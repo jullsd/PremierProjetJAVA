@@ -7,7 +7,7 @@ import java.util.List;
 public class Panier {
 
 
-     public  ArrayList<Article> articles ;
+     private  ArrayList<Article> articles ;
 
 
 
