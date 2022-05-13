@@ -1,6 +1,7 @@
 package Supermarket;
 
 
+import java.sql.SQLType;
 import java.util.Scanner;
 
 
@@ -57,39 +58,36 @@ public class MainSuperMarché {
             }
             System.out.println("Merci de Remplir vottre caddie en indiquant le nom de l'article voulu");
 
-            System.out.println("Une fois votre Panier remplit Ecrivez Payez dans la console pour procéder au réglement");
+            System.out.println("Une fois votre Panier remplit Ecrivez Payer dans la console pour procéder au réglement");
 
 
             while (!articles.equals("Payer")) {
 
                 articles = clavier.nextLine();
 
+
                 switch (articles) {
                     case "Fraises":
                         System.out.println("Prix fraises unitaires = 1E");
-                        System.out.print("Combien de fraises voulez vous ?");
+                        System.out.print("Combien de fraises voulez-vous ?");
 
                         //rfraises = fraises * nfraises;
-                        Article fraise = new Article();
-                        fraise.nom = "fraise";
-                        fraise.prix = 1.0;
-                        fraise.qty = clavier.nextInt();
+                        Article fraise = new Article("fraise", clavier.nextInt(), 1,0);
 
                         panier.getArticles().add(fraise);
 
-
-                        System.out.println("Fraises = " + fraise.qty + " Prix = " + fraise.getPrixTotal());
+                        System.out.println("Fraises = " + fraise.getQty() + " Prix  = " + fraise.getPrixTotal() +
+                                " Prix remisé = " +fraise.getPrixtotalreduction());
 
                         break;
                     case "Melons":
-                        System.out.println("Prix melons unitaires = 3E");
+                        System.out.println("Prix melons unitaires = 2E");
                         System.out.print("Combien de melons voulez vous ?");
-                        Article melons = new Article();
-                        melons.nom = "Melons";
-                        melons.prix = 3.0;
-                        melons.qty = clavier.nextInt();
 
-                        System.out.println("Fraises = " + melons.qty + " Prix = " + melons.getPrixTotal());
+                        Article melons = new Article("melons", clavier.nextInt(), 2,0);
+
+                        System.out.println("Fraises = " + melons.getQty() + " Prix = " + melons.getPrixTotal() +
+                                " Prix remisé = " +melons.getPrixtotalreduction());
 
                         panier.getArticles().add(melons);
 
@@ -97,59 +95,52 @@ public class MainSuperMarché {
                         break;
 
                     case "Pommes":
-                        System.out.println("Prix pommes unitaires = 2E");
-                        System.out.print("Combien de fraises voulez vous ?");
+                        System.out.println("Prix pommes unitaires = 0.4E");
+                        System.out.print("Combien de pommes voulez vous ?");
 
 
-                        Article pommes = new Article();
-                        pommes.nom = "Pommes";
-                        pommes.prix = 2.0;
-                        pommes.qty = clavier.nextInt();
+                        Article pommes = new Article("pommes", clavier.nextInt(), 0.4,0);
 
-                        System.out.println("Pommes = " + pommes.qty + " Prix = " + pommes.getPrixTotal());
+
+                        System.out.println("Pommes = " + pommes.getQty() + " Prix = " + pommes.getPrixTotal() +
+                                " Prix remisé = " +pommes.getPrixtotalreduction());
 
                         panier.getArticles().add(pommes);
 
                         break;
 
                     case "Abricots":
-                        System.out.println("Prix pommes unitaires = 2E");
-                        System.out.print("Combien de fraises voulez vous ?");
+                        System.out.println("Prix abricots unitaires = 0.3E");
+                        System.out.print("Combien d'abricots voulez-vous ?");
 
                         //rfraises = fraises * nfraises;
-                        Article abricots = new Article();
-                        abricots.nom = "Abricots";
-                        abricots.prix = 2.0;
-                        abricots.qty = clavier.nextInt();
+                        Article abricots = new Article("abrictos", clavier.nextInt(), 0.3,0);
 
-                        System.out.println("Pommes = " + abricots.qty + " Prix = " + abricots.getPrixTotal());
+                        System.out.println("Abricots = " + abricots.getQty() + " Prix = " + abricots.getPrixTotal()
+                                + " Prix remisé = " +abricots.getPrixtotalreduction());
 
                         panier.getArticles().add(abricots);
 
-                    case "Péches":
-                        System.out.println("Prix pommes unitaires = 3E");
-                        System.out.print("Combien de fraises voulez vous ?");
+                    case " Péches":
+                        System.out.println("Prix péches unitaires = 1.5E");
+                        System.out.print("Combien de péches voulez vous ?");
 
-                        Article peches = new Article();
-                        peches.nom = "Péches";
-                        peches.prix = 3.0;
-                        peches.qty = clavier.nextInt();
+                        Article peches = new Article("peches", clavier.nextInt(), 1.5,0);
 
-                        System.out.println("Péches = " + peches.qty + " Prix = " + peches.getPrixTotal());
+                        System.out.println("Péches = " + peches.getQty() + " Prix = " + peches.getPrixTotal()+
+                                " Prix remisé = " +peches.getPrixtotalreduction());
 
                         panier.getArticles().add(peches);
 
 
                     case "Poires":
-                        System.out.println("Prix poires unitaires = 3E");
+                        System.out.println("Prix poires unitaires = 0.7E");
                         System.out.print("Combien de poires voulez vous ?");
 
-                        Article poires = new Article();
-                        poires.nom = "Poires";
-                        poires.prix = 3.0;
-                        poires.qty = clavier.nextInt();
+                        Article poires = new Article("poires", clavier.nextInt(), 0.7,0);
 
-                        System.out.println("Poires = " + poires.qty + " Prix = " + poires.getPrixTotal());
+                        System.out.println("Poires = " + poires.getQty() + " Prix = " + poires.getPrixTotal()+
+                                " Prix remisé = " +poires.getPrixtotalreduction());
 
                         panier.getArticles().add(poires);
 
@@ -157,30 +148,26 @@ public class MainSuperMarché {
                         break;
 
                     case "Aubergines":
-                        System.out.println("Prix  aubergines  unitaires = 3E");
+                        System.out.println("Prix  aubergines  unitaires = 0.8E");
                         System.out.print("Combien d'auberignes voulez vous ?");
 
-                        Article aubergines = new Article();
-                        aubergines.nom = "Aubergines";
-                        aubergines.prix = 2.5;
-                        aubergines.qty = clavier.nextInt();
+                        Article aubergines = new Article("aubergines", clavier.nextInt(), 0.8,0);
 
-                        System.out.println("Aubergines = " + aubergines.qty + " Prix = " + aubergines.getPrixTotal());
+                        System.out.println("Aubergines = " + aubergines.getQty() + " Prix = " + aubergines.getPrixTotal()+
+                                "Prix remisé = " +aubergines.getPrixtotalreduction());
 
                         panier.getArticles().add(aubergines);
 
                         break;
 
                     case "Tomates":
-                        System.out.println("Prix  tomates  unitaires = 3E");
+                        System.out.println("Prix  tomates  unitaires = 0.5E");
                         System.out.print("Combien de tomates voulez vous ?");
 
-                        Article tomates = new Article();
-                        tomates.nom = "Aubergines";
-                        tomates.prix = 2.5;
-                        tomates.qty = clavier.nextInt();
+                        Article tomates = new Article("tomates", clavier.nextInt(), 0.5,0);
 
-                        System.out.println("Aubergines = " + tomates.qty + " Prix = " + tomates.getPrixTotal());
+                        System.out.println("Aubergines = " + tomates.getQty() + " Prix = " + tomates.getPrixTotal()+
+                                " Prix remisé = " +tomates.getPrixtotalreduction());
 
                         panier.getArticles().add(tomates);
 
@@ -188,32 +175,26 @@ public class MainSuperMarché {
                         break;
 
                     case "Carrotes":
-                        System.out.println("Prix  carrotes  unitaires = 3E");
+                        System.out.println("Prix  carrotes  unitaires = 0.7E");
                         System.out.print("Combien de carrotes voulez vous ?");
 
-                        Article carottes = new Article();
-                        carottes.nom = "Aubergines";
-                        carottes.prix = 2.5;
-                        carottes.qty = clavier.nextInt();
+                        Article carottes = new Article("carottes", clavier.nextInt(), 0.7,0);
 
-                        System.out.println("Carottes = " + carottes.qty + " Prix = " + carottes.getPrixTotal());
+                        System.out.println("Carottes = " + carottes.getQty() + " Prix = " + carottes.getPrixTotal()+
+                                " Prix remisé = "+carottes.getPrixtotalreduction());
 
                         panier.getArticles().add(carottes);
-
-
 
                         break;
 
                     case "Patates":
-                        System.out.println("Prix  patates  unitaires = 0.5E");
+                        System.out.println("Prix  patates  unitaires = 0.1E");
                         System.out.print("Combien de patates voulez vous ?");
 
-                        Article patates = new Article();
-                        patates.nom = "Patates";
-                        patates.prix = 0.5;
-                        patates.qty = clavier.nextInt();
+                        Article patates = new Article("patates", clavier.nextInt(), 0.1,0);
 
-                        System.out.println("Patates = " + patates.qty + " Prix = " + patates.getPrixTotal());
+                        System.out.println("Patates = " + patates.getQty() + " Prix = " + patates.getPrixTotal()+
+                                " Prix remisé = " +patates.getPrixtotalreduction());
 
                         panier.getArticles().add(patates);
 
@@ -223,14 +204,12 @@ public class MainSuperMarché {
                         System.out.println("Prix  poulets  unitaires = 8E");
                         System.out.print("Combien de poulets voulez vous ?");
 
-                        Article poulets = new Article();
-                        poulets.nom = "Patates";
-                        poulets.prix = 8.0;
-                        poulets.qty = clavier.nextInt();
+                        Article poulets = new Article("poulets", clavier.nextInt(), 8,0);
 
                         panier.getArticles().add(poulets);
 
-                        System.out.println("Poulets = " + poulets.qty + " Prix = " + poulets.getPrixTotal());
+                        System.out.println("Poulets = " + poulets.getQty() + " Prix = " + poulets.getPrixTotal()+
+                                " Prix remisé = " +poulets.getPrixtotalreduction());
 
                         break;
 
@@ -238,12 +217,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  tranche jambon : 0.3E ");
                         System.out.print("Combien de tranche de jambon voulez vous ?");
 
-                        Article jambons = new Article();
-                        jambons.nom = "Jambons";
-                        jambons.prix = 2.5;
-                        jambons.qty = clavier.nextInt();
+                        Article jambons = new Article("jambons", clavier.nextInt(),0.3,0);
 
-                        System.out.println("Tranche de jambons = " + jambons.qty + " Prix = " + jambons.getPrixTotal());
+                        System.out.println("Tranche de jambons = " + jambons.getQty() + " Prix = " + jambons.getPrixTotal()+
+                                " Prix remisé = " +jambons.getPrixtotalreduction());
 
                         panier.getArticles().add(jambons);
 
@@ -253,12 +230,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  Steak  unitaires = 1.5E");
                         System.out.print("Combien de Steak  voulez vous ?");
 
-                        Article steak = new Article();
-                        steak.nom = "Patates";
-                        steak.prix = 1.5;
-                        steak.qty = clavier.nextInt();
+                        Article steak = new Article("steak", clavier.nextInt(), 1.5,0);
 
-                        System.out.println(" Steak = " + steak.qty + " Prix = " + steak.getPrixTotal());
+                        System.out.println(" Steak = " + steak.getQty() + " Prix = " + steak.getPrixTotal()+
+                                " Prix remisé = " +steak.getPrixtotalreduction());
 
                         panier.getArticles().add(steak);
 
@@ -268,12 +243,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  Merguez = 1E");
                         System.out.print("Combien de Merguez  voulez vous ?");
 
-                        Article merguez = new Article();
-                        merguez.nom = "Merguez";
-                        merguez.prix = 1.0;
-                        merguez.qty = clavier.nextInt();
+                        Article merguez = new Article("merguez", clavier.nextInt(), 1,0);
 
-                        System.out.println(" Merguez = " + merguez.qty + " Prix = " + merguez.getPrixTotal());
+                        System.out.println(" Merguez = " + merguez.getQty() + " Prix = " + merguez.getPrixTotal()+
+                                " Prix remisé = " +merguez.getPrixtotalreduction());
 
                         panier.getArticles().add(merguez);
 
@@ -285,12 +258,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  Eau Plate 1L = 0.3E");
                         System.out.print("Combien de Bouteille   voulez vous ?");
 
-                        Article eau = new Article();
-                        eau.nom = "Eau Plate";
-                        eau.prix = 0.3;
-                        eau.qty = clavier.nextInt();
+                        Article eau = new Article("eau", clavier.nextInt(), 0.3,0);
 
-                        System.out.println(" Bouteilles d'eau = " + eau.qty + " Prix = " + eau.getPrixTotal());
+                        System.out.println(" Bouteilles d'eau = " + eau.getQty() + " Prix = " + eau.getPrixTotal()+
+                                " Prix remisé = " +eau.getPrixtotalreduction());
 
                         panier.getArticles().add(eau);
 
@@ -300,12 +271,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  Eau pétillante 1L = 0.4E");
                         System.out.print("Combien de Bouteille   voulez vous ?");
 
-                        Article eaup = new Article();
-                        eaup.nom = "Eau Plate";
-                        eaup.prix = 0.4;
-                        eaup.qty = clavier.nextInt();
+                        Article eaup = new Article("eaup", clavier.nextInt(), 0.4,0);
 
-                        System.out.println(" Bouteilles d'eau pétilanntes= " + eaup.qty + " Prix = " + eaup.getPrixTotal());
+                        System.out.println(" Bouteilles d'eau pétilanntes= " + eaup.getQty()+ " Prix = " + eaup.getPrixTotal()+
+                                " Prix remisé = " +eaup.getPrixtotalreduction());
 
                         panier.getArticles().add(eaup);
 
@@ -315,27 +284,23 @@ public class MainSuperMarché {
                         System.out.println("Prix  Coca 1L = 1E");
                         System.out.print("Combien de Bouteille   voulez vous ?");
 
-                        Article cocas = new Article();
-                        cocas.nom = "Eau Plate";
-                        cocas.prix = 1;
-                        cocas.qty = clavier.nextInt();
+                        Article cocas = new Article("Cocas", clavier.nextInt(), 1,0);
 
-                        System.out.println(" Bouteilles de Cocas= " + cocas.qty + " Prix = " + cocas.getPrixTotal());
+                        System.out.println(" Bouteilles de Cocas= " + cocas.getQty() + " Prix = " + cocas.getPrixTotal()+
+                                " Prix remisé = " +cocas.getPrixtotalreduction());
 
                         panier.getArticles().add(cocas);
 
                         break;
 
                     case "Colins":
-                        System.out.println("Prix  200g Colins  = 2.5E ");
-                        System.out.print("Combien de Colins   voulez vous ?");
+                        System.out.println("Prix tranche de Colins  = 2.5E ");
+                        System.out.print("Combien de tranches de Colins   voulez vous ?");
 
-                        Article colins = new Article();
-                        colins.nom = "Colins";
-                        colins.prix = 2.5;
-                        colins.qty = clavier.nextInt();
+                        Article colins = new Article("Colins", clavier.nextInt(), 2.5,0);
 
-                        System.out.println(" Tranche 200G de Colins = " + colins.qty + " Prix = " + colins.getPrixTotal());
+                        System.out.println(" Tranche 200G de Colins = " + colins.getQty() + " Prix = " + colins.getPrixTotal()+
+                                " Prix remisé = " +colins.getPrixtotalreduction());
 
                         panier.getArticles().add(colins);
 
@@ -345,12 +310,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  200g saumons  = 3.5E ");
                         System.out.print("Combien de saumons  voulez vous ?");
 
-                        Article saumons = new Article();
-                        saumons.nom = "Saumons";
-                        saumons.prix = 2.5;
-                        saumons.qty = clavier.nextInt();
+                        Article saumons = new Article("Saumons", clavier.nextInt(), 3.5,0);
 
-                        System.out.println(" Tranche 200G de saumons = " + saumons.qty + " Prix = " + saumons.getPrixTotal());
+                        System.out.println(" Tranche 200G de saumons = " + saumons.getQty()+ " Prix = " + saumons.getPrixTotal()+
+                                "Prix remisé = " +saumons.getPrixtotalreduction());
 
                         panier.getArticles().add(saumons);
 
@@ -360,12 +323,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  boites Sardines  = 3E ");
                         System.out.print("Combien de boites  voulez vous ?");
 
-                        Article sardines = new Article();
-                        sardines.nom = "Sardines";
-                        sardines.prix = 2.5;
-                        sardines.qty = clavier.nextInt();
+                        Article sardines = new Article("Sardines", clavier.nextInt(), 3,0);
 
-                        System.out.println(" Tranche 200G de saumons = " + sardines.qty + " Prix = " + sardines.getPrixTotal());
+                        System.out.println(" Tranche 200G de saumons = " + sardines.getQty() + " Prix = " + sardines.getPrixTotal() +
+                                "Prix remisé = " +sardines.getPrixtotalreduction());
 
                         panier.getArticles().add(sardines);
 
@@ -375,27 +336,23 @@ public class MainSuperMarché {
                         System.out.println("Prix  Piéce 300G Thon  = 3E ");
                         System.out.print("Combien de tranche voulez vous ?");
 
-                        Article thons = new Article();
-                        thons.nom = "Thons";
-                        thons.prix = 3;
-                        thons.qty = clavier.nextInt();
+                        Article thons = new Article("Thons", clavier.nextInt(), 3,0);
 
-                        System.out.println(" Tranche 300G Thon = " + thons.qty + " Prix = " + thons.getPrixTotal());
+                        System.out.println(" Tranche 300G Thon = " + thons.getQty() + " Prix = " + thons.getPrixTotal()+
+                                " Prix remisé = " +thons.getPrixtotalreduction());
 
                         panier.getArticles().add(thons);
 
                         break;
 
                     case "Dragibus":
-                        System.out.println("Prix  sachet dragibus  = 2E ");
+                        System.out.println("Prix  sachet de dragibus  = 2E ");
                         System.out.print("Combien de sachet voulez vous ?");
 
-                        Article dragibus = new Article();
-                        dragibus.nom = "Dragibus";
-                        dragibus.prix = 2;
-                        dragibus.qty = clavier.nextInt();
+                        Article dragibus = new Article("Dragiubs", clavier.nextInt(), 2,0);
 
-                        System.out.println(" Sachet de dragibus = " + dragibus.qty + " Prix = " + dragibus.getPrixTotal());
+                        System.out.println(" Sachet de dragibus = " + dragibus.getQty() + " Prix = " + dragibus.getPrixTotal()+
+                                " Prix remisé = " +dragibus.getPrixtotalreduction());
 
                         panier.getArticles().add(dragibus);
 
@@ -405,12 +362,11 @@ public class MainSuperMarché {
                         System.out.println("Prix  sachet Réglisses  = 1E ");
                         System.out.print("Combien de sachet voulez vous ?");
 
-                        Article reglisses = new Article();
-                        reglisses.nom = "Réglisses";
-                        reglisses.prix = 1;
-                        reglisses.qty = clavier.nextInt();
+                        Article reglisses = new Article("Réglisses", clavier.nextInt(), 1,0 );
 
-                        System.out.println(" Sachets de réglisses = " + reglisses.qty + " Prix = " + reglisses.getPrixTotal());
+
+                        System.out.println(" Sachets de réglisses = " + reglisses.getQty() + " Prix = " + reglisses.getPrixTotal()+
+                                " Prix remisé = " +reglisses.getPrixtotalreduction());
 
                         panier.getArticles().add(reglisses);
 
@@ -420,12 +376,11 @@ public class MainSuperMarché {
                         System.out.println("Prix  paquets cremeux  = 1.5E ");
                         System.out.print("Combien de paquets voulez vous ?");
 
-                        Article cremeux = new Article();
-                        cremeux.nom = "Réglisses";
-                        cremeux.prix = 1.5;
-                        cremeux.qty = clavier.nextInt();
+                        Article cremeux = new Article("Cremeux", clavier.nextInt(), 1.5,0);
 
-                        System.out.println(" Paquets de cremeux = " + cremeux.qty + " Prix = " + cremeux.getPrixTotal());
+
+                        System.out.println(" Paquets de cremeux = " + cremeux.getQty() + " Prix = " + cremeux.getPrixTotal()+
+                                " Prix remisé = " +cremeux.getPrixtotalreduction());
 
                         panier.getArticles().add(cremeux);
 
@@ -434,12 +389,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  paquets 100 Feuilles  = 1E ");
                         System.out.print("Combien de paquets voulez vous ?");
 
-                        Article feuilles = new Article();
-                        feuilles.nom = "Feuilles";
-                        feuilles.prix = 1;
-                        feuilles.qty = clavier.nextInt();
+                        Article feuilles = new Article("feuilles", clavier.nextInt(), 1,0);
 
-                        System.out.println(" Paquets de feuilles = " + feuilles.qty + " Prix = " + feuilles.getPrixTotal());
+                        System.out.println(" Paquets de feuilles = " + feuilles.getQty() + " Prix = " + feuilles.getPrixTotal()+
+                                " Prix remisé = " +feuilles.getPrixtotalreduction());
 
                         panier.getArticles().add(feuilles);
 
@@ -449,12 +402,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  paquets 6 Sopalins = 2E ");
                         System.out.print("Combien de paquets voulez vous ?");
 
-                        Article sopalins = new Article();
-                        sopalins.nom = "Sopalins";
-                        sopalins.prix = 1.5;
-                        sopalins.qty = clavier.nextInt();
+                        Article sopalins = new Article("Sopalins", clavier.nextInt(), 2, 0);
 
-                        System.out.println(" Paquets de sopalins = " + sopalins.qty + " Prix = " + sopalins.getPrixTotal());
+                        System.out.println(" Paquets de sopalins = " + sopalins.getQty() + " Prix = " + sopalins.getPrixTotal()+
+                                " Prix remisé = " +sopalins.getPrixtotalreduction());
 
                         panier.getArticles().add(sopalins);
 
@@ -464,12 +415,10 @@ public class MainSuperMarché {
                         System.out.println("Prix  paquets de mouchoirs  = 1E ");
                         System.out.print("Combien de paquets voulez vous ?");
 
-                        Article mouchoirs = new Article();
-                        mouchoirs.nom = "Réglisses";
-                        mouchoirs.prix = 1;
-                        mouchoirs.qty = clavier.nextInt();
+                        Article mouchoirs = new Article("mouchoirs", clavier.nextInt(), 1,0);
 
-                        System.out.println(" Paquets de cremeux = " + mouchoirs.qty + " Prix = " + mouchoirs.getPrixTotal());
+                        System.out.println(" Paquets de cremeux = " + mouchoirs.getQty() + " Prix = " + mouchoirs.getPrixTotal()+
+                                " Prix remisé = " +mouchoirs.getPrixtotalreduction());
 
                         panier.getArticles().add(mouchoirs);
 
@@ -482,8 +431,6 @@ public class MainSuperMarché {
 
 
             double prixTotal =0;
-
-
 
 
 
