@@ -51,7 +51,7 @@ public class Article {
 
     public double getPrixTotal() {return prix * qty ;
     }
-    public double getPrixtotalreduction(){return getPrixTotal() + prix * qty * reduction;
+    public double getPrixtotalreduction(){return  prix * qty * reduction;
 
     }
 

@@ -19,8 +19,7 @@ public class Panier {
     }
 
     public List<Article> getArticles() {
-        return articles;
-    }
+        return articles;}
 
     public double valeurCadie(){
 
@@ -30,7 +29,11 @@ public class Panier {
         for(int x=0;x<articles.size();x++){
 
           Article a = articles.get(x);
-          prixTotal= prixTotal + a.getPrixTotal();
+          if(a.getPrixtotalreduction()==0) {
+              prixTotal = prixTotal + a.getPrixTotal();
+          }else {
+              prixTotal = prixTotal + a.getPrixtotalreduction();
+          }
 
           //prixTotal += a.getPrixTotal();(même chose)
 
